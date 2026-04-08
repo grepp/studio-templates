@@ -1,0 +1,30 @@
+# app.yaml — 환경별 앱 설정 (민감정보 제외, .env 파일에서 관리)
+# 이 파일은 Git에 커밋해도 안전한 비민감 설정만 포함합니다.
+
+app:
+  name: my-service
+  version: "1.0.0"
+  description: "서비스 설명을 여기에 작성하세요"
+
+server:
+  timeout_seconds: 30
+  max_request_size_mb: 10
+
+database:
+  pool_size: 10
+  max_overflow: 20
+  pool_timeout: 30
+  pool_recycle: 1800     # 30분마다 연결 재생성
+
+auth:
+  algorithm: HS256
+  access_token_expire_minutes: 60
+  refresh_token_expire_days: 7
+
+logging:
+  level: INFO            # DEBUG | INFO | WARNING | ERROR
+  format: json           # json | text
+
+pagination:
+  default_page_size: 20
+  max_page_size: 100

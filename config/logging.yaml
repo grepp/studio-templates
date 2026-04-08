@@ -1,0 +1,35 @@
+# logging.yaml — 로그 설정
+# structlog 기반 구조화 로그. 민감정보는 자동 마스킹됩니다.
+
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  json:
+    format: "%(message)s"
+  text:
+    format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    stream: ext://sys.stdout
+    formatter: json
+
+loggers:
+  uvicorn:
+    level: INFO
+    propagate: true
+  uvicorn.error:
+    level: ERROR
+    propagate: true
+  uvicorn.access:
+    level: WARNING     # 접근 로그에 민감정보 포함 방지를 위해 WARNING 이상만 출력
+    propagate: false
+  sqlalchemy.engine:
+    level: WARNING     # 운영 환경에서는 WARNING; 개발 중 쿼리 확인 시 INFO로 변경
+    propagate: true
+
+root:
+  level: INFO
+  handlers: [console]

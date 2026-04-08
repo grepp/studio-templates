@@ -1,0 +1,10 @@
+apiVersion: v2
+name: my-service
+description: "서비스 설명을 여기에 작성하세요"
+type: application
+version: "0.1.0"        # Helm chart 버전
+appVersion: "1.0.0"     # 애플리케이션 버전
+
+maintainers:
+  - name: TODO           # 담당자 이름
+    email: todo@example.com

@@ -1,0 +1,36 @@
+# 민감 파일
+.env
+.env.*
+!.env.example
+
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# 문서
+*.md
+docs/
+
+# Helm (빌드에 불필요)
+helm/
+
+# 테스트
+tests/

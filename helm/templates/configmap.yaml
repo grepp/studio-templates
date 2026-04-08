@@ -1,0 +1,16 @@
+{{- if .Values.configMap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "my-service.fullname" . }}-config
+  labels:
+    {{- include "my-service.labels" . | nindent 4 }}
+data:
+  app.yaml: |
+    app:
+      name: {{ .Chart.Name }}
+      version: {{ .Chart.AppVersion | quote }}
+    logging:
+      level: {{ .Values.env.LOG_LEVEL | default "INFO" }}
+      format: {{ .Values.env.LOG_FORMAT | default "json" }}
+{{- end }}
