@@ -65,26 +65,33 @@ docker compose -f docker/docker-compose.yml up -d
 ## 설정
 
 민감정보(API Key, 비밀번호 등)는 코드에서 분리되어 있습니다.
-프로젝트에 포함된 예시 파일을 복사하여 실제 값을 입력하세요.
 
 <!-- TODO: 프로젝트에 맞는 분리 방식의 안내만 남기고 나머지는 삭제하세요 -->
 
 ### 서버 프로젝트인 경우
 
+- `.env.example` — dummy 값 (Git에 커밋됨)
+- `.env` — 실제 값 (Git에 커밋되지 않음)
+
+최초 설정 시:
 ```bash
 cp .env.example .env
-# .env 파일을 열어 실제 값을 입력하세요. .env는 Git에 커밋하지 않습니다.
+# .env 파일을 열어 실제 값을 입력하세요.
 ```
 
 ### 브라우저 only 프로젝트인 경우
 
+- `app-config.example.js` — dummy 값 (Git에 커밋됨)
+- `app-config.js` — 실제 값 (Git에 커밋되지 않음)
+
+최초 설정 시:
 ```bash
 cp app-config.example.js app-config.js
-# app-config.js 파일을 열어 실제 값을 입력하세요. 이 파일은 Git에 커밋하지 않습니다.
+# app-config.js 파일을 열어 실제 값을 입력하세요.
 ```
 
-> ⚠️ 기존에 소스 코드에 포함되어 있던 API Key, 비밀번호 등은 분리 과정에서 제거되었습니다.
-> 해당 값이 이미 Git에 커밋된 적이 있다면 **즉시 재발급**받으세요.
+> ⚠️ 기존에 소스 코드에 포함되어 있던 API Key, 비밀번호 등은 분리 과정에서 실제 파일(`.env` / `app-config.js`)로 옮겨졌습니다.
+> 해당 값이 이미 Git에 커밋된 적이 있다면 **즉시 재발급**받은 후 실제 파일의 값을 새 값으로 교체하세요.
 
 ---
 
