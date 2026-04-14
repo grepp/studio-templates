@@ -62,19 +62,29 @@ docker compose -f docker/docker-compose.yml up -d
 
 ---
 
-## 환경 변수
+## 설정
 
-`.env.example` 파일을 참고하세요. 실제 값은 `.env` 파일에 설정하며 Git에 커밋하지 않습니다.
+민감정보(API Key, 비밀번호 등)는 코드에서 분리되어 있습니다.
+프로젝트에 포함된 예시 파일을 복사하여 실제 값을 입력하세요.
 
-| 변수명 | 설명 | 예시 |
-|--------|------|------|
-| `APP_ENV` | 실행 환경 | `development` / `production` |
-| `APP_PORT` | 서버 포트 | `8000` |
-| `SECRET_KEY` | JWT 서명 키 | *(임의 생성값)* |
-| `DATABASE_URL` | PostgreSQL 연결 문자열 | `postgresql://user:pass@host:5432/db` |
-| `LOG_LEVEL` | 로그 레벨 | `INFO` / `DEBUG` |
+<!-- TODO: 프로젝트에 맞는 분리 방식의 안내만 남기고 나머지는 삭제하세요 -->
 
-전체 목록은 [`.env.example`](.env.example) 참고.
+### 서버 프로젝트인 경우
+
+```bash
+cp .env.example .env
+# .env 파일을 열어 실제 값을 입력하세요. .env는 Git에 커밋하지 않습니다.
+```
+
+### 브라우저 only 프로젝트인 경우
+
+```bash
+cp app-config.example.js app-config.js
+# app-config.js 파일을 열어 실제 값을 입력하세요. 이 파일은 Git에 커밋하지 않습니다.
+```
+
+> ⚠️ 기존에 소스 코드에 포함되어 있던 API Key, 비밀번호 등은 분리 과정에서 제거되었습니다.
+> 해당 값이 이미 Git에 커밋된 적이 있다면 **즉시 재발급**받으세요.
 
 ---
 
