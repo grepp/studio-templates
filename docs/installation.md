@@ -53,9 +53,9 @@ BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/nag
    curl -s ${BASE_URL}/AGENTS.md
    ```
 
-2. **DESIGN.md** — 시스템 설계 템플릿
+2. **ARCHITECTURE.md** — 시스템 구조 템플릿
    ```bash
-   curl -s ${BASE_URL}/DESIGN.md
+   curl -s ${BASE_URL}/ARCHITECTURE.md
    ```
 
 3. **RUNBOOK.md** — 운영 절차서 템플릿
@@ -82,7 +82,7 @@ BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/nag
 ├── AGENTS.md                    ← 루트
 ├── README.md                    ← 루트 (Step 5에서 생성)
 └── .grepp-agent/
-    ├── DESIGN.md
+    ├── ARCHITECTURE.md
     ├── RUNBOOK.md
     └── SECURITY.md
 ```
@@ -96,7 +96,7 @@ fetch 한 `AGENTS.md` 내용을 **그대로** 프로젝트 루트에 생성한�
 
 `.grepp-agent/` 디렉토리를 생성하고, 아래 파일들을 프로젝트에 맞게 수정하여 넣는다:
 
-**DESIGN.md** — fetch 한 템플릿을 기반으로 다음을 반영하여 작성:
+**ARCHITECTURE.md** — fetch 한 템플릿을 기반으로 다음을 반영하여 작성:
 - 프로젝트의 실제 구조에 맞는 시스템 구조도
 - 프로젝트의 실제 데이터 흐름
 - 프로젝트의 실제 외부 연동 서비스
@@ -199,11 +199,11 @@ fetch 한 `AGENTS.md` 내용을 **그대로** 프로젝트 루트에 생성한�
 
 ### Step 6: 문서 TODO 채우기
 
-Step 2에서 생성한 DESIGN.md, RUNBOOK.md, SECURITY.md에 남아있는 `TODO:` 항목을 사용자의 답변으로 채운다.
+Step 2에서 생성한 ARCHITECTURE.md, RUNBOOK.md, SECURITY.md에 남아있는 `TODO:` 항목을 사용자의 답변으로 채운다.
 
 채울 수 없는 항목은 사용자에게 **추가로 질문**하여 입력받는다. 예:
 
-- DESIGN.md의 외부 연동 서비스 → Step 5의 8번 답변으로 채움
+- ARCHITECTURE.md의 외부 연동 서비스 → Step 5의 8번 답변으로 채움
 - RUNBOOK.md의 담당자 → Step 5의 6, 7번 답변으로 채움
 - SECURITY.md의 수집 데이터 → 사용자에게 "이 서비스에서 수집하는 데이터가 있나요?" 라고 추가 질문
 
@@ -223,7 +223,7 @@ Step 2에서 생성한 DESIGN.md, RUNBOOK.md, SECURITY.md에 남아있는 `TODO:
 
 생성된 파일:
 - AGENTS.md               (AI 작업 기준 문서)
-- .grepp-agent/DESIGN.md  (시스템 설계 문서)
+- .grepp-agent/ARCHITECTURE.md  (시스템 구조 문서)
 - .grepp-agent/RUNBOOK.md (운영 절차서)
 - .grepp-agent/SECURITY.md (보안 정책 문서)
 - README.md               (프로젝트 소개 문서)
