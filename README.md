@@ -1,102 +1,119 @@
-# 서비스명 (Service Name)
+# Installation Structure Design Template
 
-> 한 줄 서비스 설명을 여기에 작성하세요.
-
----
-
-## 목차
-
-- [서비스 개요](#서비스-개요)
-- [실행 방법](#실행-방법)
-- [환경 변수](#환경-변수)
-- [API 엔드포인트](#api-엔드포인트)
-- [담당자](#담당자)
+> 비개발자가 AI로 생성한 코드를, 회사 운영 표준에 맞는 프로덕션 서비스로 변환하는 템플릿.
 
 ---
 
-## 서비스 개요
+## 개요
 
-<!-- TODO: 서비스의 목적, 주요 기능, 사용 대상을 작성하세요 -->
+이 저장소는 **템플릿**이다. 비개발자의 프로젝트에 적용하면:
 
-| 항목 | 내용 |
-|------|------|
-| 서비스명 | - |
-| 목적 | - |
-| 주요 기능 | - |
-| 사용 대상 | - |
-| 기술 스택 | Python / FastAPI / PostgreSQL 16 |
+- `AGENTS.md` — AI가 따라야 할 작업 기준 문서
+- `ARCHITECTURE.md` — 시스템 구조 템플릿
+- `RUNBOOK.md` — 운영 절차서 템플릿
+- `SECURITY.md` — 보안 정책 템플릿
+- 디렉토리 구조, Dockerfile, Helm Chart 등 운영 인프라 일식
+
+이 생성된다.
+
+### 기술 스택
+
+| 항목 | 기본값 |
+|------|--------|
+| 언어 | Python |
+| 프레임워크 | FastAPI |
+| DB | PostgreSQL 16.x |
+| 컨테이너 | Docker (멀티스테이지 빌드) |
+| 배포 | Kubernetes / Helm |
+| 인증 | JWT (HS256) |
+| 로깅 | structlog (JSON 구조화) |
 
 ---
 
-## 실행 방법
+## Installation
 
-### 로컬 개발 환경
+### For LLM Agents
 
-```bash
-# 1. 환경 변수 설정
-cp .env.example .env
-# .env 파일을 열어 값 입력
+AI Agent에게 다음을 지시하세요:
 
-# 2. 의존성 설치
-pip install -r requirements.txt
-
-# 3. 서버 실행
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+Fetch and follow the installation guide:
+curl -s https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/nagle/installation-structure-design/docs/installation.md
 ```
 
-### Docker 실행
+또는:
 
-```bash
-# 빌드
-docker build -f docker/Dockerfile -t service-name:latest .
-
-# 실행
-docker run --env-file .env -p 8000:8000 service-name:latest
+```
+Read this and apply the template to my project:
+https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/nagle/installation-structure-design/docs/installation.md
 ```
 
-### Docker Compose 실행 (앱 + DB 포함)
+### For Humans
 
-```bash
-docker compose -f docker/docker-compose.yml up -d
+직접 설치하고 싶다면 `docs/installation.md`를 읽고 수동으로 진행하세요.
+하지만 AI Agent에게 맡기는 것을 권장합니다.
+
+---
+
+## 템플릿 구조
+
+```
+/
+├── docs/                  ← 템플릿 문서
+│   ├── installation.md   ← AI가 curl로 fetch하는 설치 가이드
+│   ├── AGENTS.md         ← AI 작업 기준 문서 (대상 프로젝트에 복사됨)
+│   ├── ARCHITECTURE.md   ← 시스템 구조 템플릿
+│   ├── RUNBOOK.md        ← 운영 절차서 템플릿
+│   ├── SECURITY.md       ← 보안 정책 템플릿
+│   └── template-README.md ← 대상 프로젝트용 README 템플릿
+│
+├── app/                  ← 애플리케이션 진입점
+│   ├── main.py
+│   └── health.py
+├── src/                  ← 비즈니스 로직
+│   ├── config.py
+│   ├── logger.py
+│   ├── auth/
+│   ├── db/
+│   └── routes/
+├── config/               ← 환경별 설정
+├── docker/               ← 컨테이너 정의
+├── helm/                 ← Kubernetes 배포
+│
+├── .env.example
+├── requirements.txt
+├── .gitignore
+└── .dockerignore
 ```
 
 ---
 
-## 환경 변수
+## 설치 플로우
 
-`.env.example` 파일을 참고하세요. 실제 값은 `.env` 파일에 설정하며 Git에 커밋하지 않습니다.
+```
+사용자: "이 템플릿을 내 프로젝트에 적용해"
+  ↓
+AI: curl installation.md → 읽기
+  ↓
+AI: AGENTS.md, ARCHITECTURE.md, RUNBOOK.md, SECURITY.md 순차 fetch
+  ↓
+AI: 대상 프로젝트 분석 → 파일 생성 → 구조 정리 → 보안 검사
+  ↓
+AI: 사용자에게 정보 질문 (서비스명, 목적, 담당자 등)
+  ↓
+AI: README.md 생성 → 완료 보고
+```
 
-| 변수명 | 설명 | 예시 |
-|--------|------|------|
-| `APP_ENV` | 실행 환경 | `development` / `production` |
-| `APP_PORT` | 서버 포트 | `8000` |
-| `SECRET_KEY` | JWT 서명 키 | *(임의 생성값)* |
-| `DATABASE_URL` | PostgreSQL 연결 문자열 | `postgresql://user:pass@host:5432/db` |
-| `LOG_LEVEL` | 로그 레벨 | `INFO` / `DEBUG` |
+### 설치 결과 (대상 프로젝트)
 
-전체 목록은 [`.env.example`](.env.example) 참고.
+```
+대상 프로젝트/
+├── AGENTS.md                    ← 루트 (AI 도구 자동 인식)
+├── README.md                    ← 루트 (사용자 인터뷰 기반 생성)
+└── .grepp-agent/
+    ├── ARCHITECTURE.md          ← 시스템 구조 문서
+    ├── RUNBOOK.md               ← 운영 절차서
+    └── SECURITY.md              ← 보안 정책 문서
+```
 
----
 
-## API 엔드포인트
-
-| Method | Path | 설명 | 인증 필요 |
-|--------|------|------|-----------|
-| GET | `/health` | 헬스체크 | 불필요 |
-| POST | `/auth/login` | 로그인 (JWT 발급) | 불필요 |
-| GET | `/api/v1/...` | 주요 API | 필요 |
-
-전체 API 문서: 실행 후 `http://localhost:8000/docs` 접속
-
----
-
-## 담당자
-
-| 역할 | 이름 | 연락처 |
-|------|------|--------|
-| 개발 | <!-- TODO --> | - |
-| 운영 | <!-- TODO --> | - |
-
----
-
-> 이 프로젝트는 [AI_AGENT_GUIDE.md](AI_AGENT_GUIDE.md) 기준을 따릅니다.
