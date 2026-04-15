@@ -231,7 +231,38 @@ Step 2에서 생성한 ARCHITECTURE.md, RUNBOOK.md, SECURITY.md에 남아있는 
 사용자의 답변을 바탕으로, fetch 한 `template-README.md` 템플릿을 채워서 프로젝트 루트에 `README.md`를 생성한다.
 기존 `README.md`가 있었다면 덮어쓴다.
 
-### Step 8: 완료
+### Step 8: SPEC.md 작성
+
+**모든 프로젝트**에서 `.grepp-agent/SPEC.md`를 작성한다. 프로젝트 단계에 따라 작성 방식이 다르다:
+
+#### 기존 프로젝트인 경우
+
+Step 0~7에서 분석한 프로젝트의 실제 코드, 구조, 설정을 기반으로 에이전트가 **직접 분석하여** SPEC.md를 작성한다.
+사용자에게 추가 질문을 하지 않고, 코드에서 파악할 수 있는 내용은 모두 자동으로 채운다.
+
+**코드 분석 기반 작성 항목:**
+- 소스 코드에서 화면/페이지/라우트를 파악하여 화면 구성 작성
+- DB 모델, 스키마, 데이터 구조에서 데이터 항목 파악
+- API 엔드포인트, 외부 연동 코드에서 외부 연동 파악
+- 설정 파일에서 기술 스택 파악
+- 파악할 수 없는 항목만 `TODO:`로 표시
+
+작성 후 사용자에게 보여주고 확인받는다:
+```
+📝 프로젝트 분석을 기반으로 명세서를 작성했습니다. 확인해주세요.
+
+{.grepp-agent/SPEC.md 내용 전체 표시}
+
+---
+추가하거나 수정할 내용이 있나요?
+```
+
+#### 초기 프로젝트인 경우
+
+Step 5의 인터뷰 결과만으로는 구현에 충분하지 않으므로, Step A에서 추가 질문을 진행한 후 SPEC.md를 작성한다.
+→ Step A~D로 진행한다.
+
+### Step 9: 완료
 
 모든 작업이 끝났으면, 사용자에게 다음을 보고하라:
 
@@ -240,9 +271,11 @@ Step 2에서 생성한 ARCHITECTURE.md, RUNBOOK.md, SECURITY.md에 남아있는 
 
 생성된 파일:
 - AGENTS.md               (AI 작업 기준 문서)
+- .grepp-agent/VERSION    (템플릿 버전)
 - .grepp-agent/ARCHITECTURE.md  (시스템 구조 문서)
 - .grepp-agent/RUNBOOK.md (운영 절차서)
 - .grepp-agent/SECURITY.md (보안 정책 문서)
+- .grepp-agent/SPEC.md    (서비스 명세서)
 - README.md               (프로젝트 소개 문서)
 
 🔑 민감정보 처리 안내:
@@ -263,7 +296,8 @@ Step 2에서 생성한 ARCHITECTURE.md, RUNBOOK.md, SECURITY.md에 남아있는 
 
 ## 초기 프로젝트 전용 절차 (Step A~D)
 
-> **Step 0에서 초기 프로젝트로 판단된 경우에만 수행한다.** 기존 프로젝트는 이 절차를 건너뛴다.
+> **Step 0에서 초기 프로젝트로 판단된 경우에만 수행한다.**
+> 기존 프로젝트는 Step 8에서 코드 분석 기반으로 SPEC.md를 자동 작성하므로 이 절차를 건너뛴다.
 
 ### Step A: 구현 정보 수집
 

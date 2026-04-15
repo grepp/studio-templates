@@ -15,9 +15,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update VERSION timestamp
+      - name: Generate version
+        id: version
         run: |
-          echo "$(date -u +%Y%m%d%H%M%S)" > docs/VERSION
+          VERSION="$(date -u +%Y%m%d%H%M%S)"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "$VERSION" > docs/VERSION
 
       - name: Commit and push
         run: |
@@ -26,3 +29,13 @@ jobs:
           git add docs/VERSION
           git diff --cached --quiet || git commit -m "chore: bump template version [skip ci]"
           git push
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          gh release create "$VERSION" \
+            --title "$VERSION" \
+            --notes "Template version $VERSION" \
+            --latest
