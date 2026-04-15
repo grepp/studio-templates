@@ -18,40 +18,26 @@
 
 ### 기술 스택
 
-| 항목 | 기본값 |
-|------|--------|
-| 언어 | Python |
-| 프레임워크 | FastAPI |
-| DB | PostgreSQL 16.x |
-| 컨테이너 | Docker (멀티스테이지 빌드) |
-| 배포 | Kubernetes / Helm |
-| 인증 | JWT (HS256) |
-| 로깅 | structlog (JSON 구조화) |
+| 항목       | 기본값                     |
+| ---------- | -------------------------- |
+| 언어       | Python                     |
+| 프레임워크 | FastAPI                    |
+| DB         | PostgreSQL 16.x            |
+| 컨테이너   | Docker (멀티스테이지 빌드) |
+| 배포       | Kubernetes / Helm          |
+| 인증       | JWT (HS256)                |
+| 로깅       | structlog (JSON 구조화)    |
 
 ---
 
 ## Installation
 
-### For LLM Agents
-
-AI Agent에게 다음을 지시하세요:
+사용하고 있는 AI Agent에게 다음을 지시하세요:
 
 ```
 Fetch and follow the installation guide:
 curl -s https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/installation.md
 ```
-
-또는:
-
-```
-Read this and apply the template to my project:
-https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/installation.md
-```
-
-### For Humans
-
-직접 설치하고 싶다면 `docs/installation.md`를 읽고 수동으로 진행하세요.
-하지만 AI Agent에게 맡기는 것을 권장합니다.
 
 ---
 
@@ -118,5 +104,3 @@ AI: README.md 생성 → 완료 보고
     ├── RUNBOOK.md               ← 운영 절차서
     └── SECURITY.md              ← 보안 정책 문서
 ```
-
-
