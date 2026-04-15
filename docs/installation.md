@@ -6,7 +6,7 @@ AI Agent에게 다음을 복사해서 붙여넣으세요:
 
 ```
 Fetch and follow the installation guide:
-curl -fsSL https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/nagle/installation-structure-design/docs/installation.md
+curl -fsSL https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/installation.md
 ```
 
 직접 하지 마세요. AI가 하는 게 더 빠르고 정확합니다.
@@ -18,7 +18,7 @@ curl -fsSL https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/n
 > **IMPORTANT: Use `curl` to fetch this file, NOT WebFetch.** WebFetch summarizes content and loses critical details like security checks and user interview questions. Always use:
 >
 > ```bash
-> curl -fsSL https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/nagle/installation-structure-design/docs/installation.md
+> curl -fsSL https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/installation.md
 > ```
 
 이 문서를 읽고 있다면, 당신은 비개발자의 프로젝트에 운영 표준 템플릿을 적용하려는 AI Agent입니다. 사용자의 프로젝트를 분석하고, 실행·배포 가능한 서비스 구조로 변환하세요.
@@ -43,7 +43,7 @@ curl -fsSL https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/n
 다음 파일들을 순차적으로 fetch하여 읽는다. 모두 같은 base URL 아래에 있다:
 
 ```bash
-BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/nagle/installation-structure-design/docs
+BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs
 ```
 
 **반드시 읽어야 하는 파일 (순서대로):**

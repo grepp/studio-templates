@@ -38,14 +38,14 @@ AI Agent에게 다음을 지시하세요:
 
 ```
 Fetch and follow the installation guide:
-curl -s https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/nagle/installation-structure-design/docs/installation.md
+curl -s https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/installation.md
 ```
 
 또는:
 
 ```
 Read this and apply the template to my project:
-https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/nagle/installation-structure-design/docs/installation.md
+https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/installation.md
 ```
 
 ### For Humans
