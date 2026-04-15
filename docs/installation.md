@@ -1,26 +1,5 @@
 # Installation
 
-## For Humans
-
-AI Agent에게 다음을 복사해서 붙여넣으세요:
-
-```
-Fetch and follow the installation guide:
-curl -fsSL https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/installation.md
-```
-
-직접 하지 마세요. AI가 하는 게 더 빠르고 정확합니다.
-
----
-
-## For LLM Agents
-
-> **IMPORTANT: Use `curl` to fetch this file, NOT WebFetch.** WebFetch summarizes content and loses critical details like security checks and user interview questions. Always use:
->
-> ```bash
-> curl -fsSL https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/installation.md
-> ```
-
 이 문서를 읽고 있다면, 당신은 비개발자의 프로젝트에 운영 표준 템플릿을 적용하려는 AI Agent입니다. 사용자의 프로젝트를 분석하고, 실행·배포 가능한 서비스 구조로 변환하세요.
 
 다음 스텝을 순서대로 따르세요:
@@ -49,26 +28,31 @@ BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/mai
 **반드시 읽어야 하는 파일 (순서대로):**
 
 1. **VERSION** — 템플릿 버전 (가장 먼저 읽고 기록)
+
    ```bash
    REMOTE_VERSION=$(curl -s ${BASE_URL}/VERSION)
    ```
 
 2. **AGENTS.md** — AI 작업 기준 문서 (핵심)
+
    ```bash
    curl -s ${BASE_URL}/AGENTS.md
    ```
 
 3. **ARCHITECTURE.md** — 시스템 구조 템플릿
+
    ```bash
    curl -s ${BASE_URL}/ARCHITECTURE.md
    ```
 
 4. **RUNBOOK.md** — 운영 절차서 템플릿
+
    ```bash
    curl -s ${BASE_URL}/RUNBOOK.md
    ```
 
 5. **SECURITY.md** — 보안 정책 템플릿
+
    ```bash
    curl -s ${BASE_URL}/SECURITY.md
    ```
@@ -103,14 +87,17 @@ fetch 한 `AGENTS.md` 내용을 **그대로** 프로젝트 루트에 생성한�
 `.grepp-agent/` 디렉토리를 생성하고, 아래 파일들을 넣는다:
 
 **VERSION** — Step 1에서 fetch한 원격 VERSION 값을 그대로 파일로 생성한다:
+
 ```bash
 echo "${REMOTE_VERSION}" > .grepp-agent/VERSION
 ```
+
 이 파일은 향후 AI Agent가 세션 시작 시 템플릿 업데이트를 확인하는 기준이 된다.
 
 아래 파일들은 프로젝트에 맞게 수정하여 넣는다:
 
 **ARCHITECTURE.md** — fetch 한 템플릿을 기반으로 다음을 반영하여 작성:
+
 - 프로젝트의 실제 구조에 맞는 시스템 구조도
 - 프로젝트의 실제 데이터 흐름
 - 프로젝트의 실제 외부 연동 서비스
@@ -118,11 +105,13 @@ echo "${REMOTE_VERSION}" > .grepp-agent/VERSION
 - 모르는 항목은 `TODO:` 마커로 표시
 
 **RUNBOOK.md** — fetch 한 템플릿을 기반으로 다음을 반영하여 작성:
+
 - 서비스명을 실제 프로젝트명으로 교체
 - 담당자 정보를 `TODO:`로 표시
 - 프로젝트에 맞는 배포 방법
 
 **SECURITY.md** — fetch 한 템플릿을 기반으로 다음을 반영하여 작성:
+
 - 실제 수집 데이터 목록
 - 실제 외부 전송 데이터
 - 모르는 항목은 `TODO:` 마커로 표시
@@ -143,11 +132,11 @@ echo "${REMOTE_VERSION}" > .grepp-agent/VERSION
 
 프로젝트 환경에 맞는 방식 **하나만** 선택하여 생성한다. 여러 방식을 중복하지 마라.
 
-| 환경 | 선택할 방식 | 예시 파일 (커밋됨) | 실제 파일 (.gitignore 등록) |
-|------|------------|-------------------|---------------------------|
-| 서버 런타임 (Node.js, Python 등) | `.env` | `.env.example` | `.env` |
-| 브라우저 only (HTML/JS) | JS 설정 파일 | `app-config.example.js` | `app-config.js` |
-| 빌드 도구 사용 (Vite, webpack 등) | `.env` + 빌드 주입 | `.env.example` | `.env` |
+| 환경                              | 선택할 방식        | 예시 파일 (커밋됨)      | 실제 파일 (.gitignore 등록) |
+| --------------------------------- | ------------------ | ----------------------- | --------------------------- |
+| 서버 런타임 (Node.js, Python 등)  | `.env`             | `.env.example`          | `.env`                      |
+| 브라우저 only (HTML/JS)           | JS 설정 파일       | `app-config.example.js` | `app-config.js`             |
+| 빌드 도구 사용 (Vite, webpack 등) | `.env` + 빌드 주입 | `.env.example`          | `.env`                      |
 
 **반드시 두 파일 모두 생성해야 한다:**
 
@@ -167,12 +156,12 @@ echo "${REMOTE_VERSION}" > .grepp-agent/VERSION
 
 #### 나머지 인프라 파일
 
-| 파일 | 조건 | 작성 기준 |
-|------|------|-----------|
-| `docker-compose.yml` | DB 또는 외부 서비스가 필요한 경우 | 대상 프로젝트가 사용하는 DB 엔진에 맞게 작성 |
-| `.gitignore` | 항상 (기존 파일이 없거나 민감 파일 미포함 시 보완) | 언어에 맞는 기본 항목 + 실제 설정 파일(예: `.env`, `app-config.js`) 반드시 포함 |
-| `.dockerignore` | 항상 | 민감 파일, `.git`, 문서 파일 제외 |
-| 의존성 파일 | 항상 | `requirements.txt` / `package.json` / `Gemfile` 등 언어에 맞는 것 |
+| 파일                 | 조건                                               | 작성 기준                                                                       |
+| -------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `docker-compose.yml` | DB 또는 외부 서비스가 필요한 경우                  | 대상 프로젝트가 사용하는 DB 엔진에 맞게 작성                                    |
+| `.gitignore`         | 항상 (기존 파일이 없거나 민감 파일 미포함 시 보완) | 언어에 맞는 기본 항목 + 실제 설정 파일(예: `.env`, `app-config.js`) 반드시 포함 |
+| `.dockerignore`      | 항상                                               | 민감 파일, `.git`, 문서 파일 제외                                               |
+| 의존성 파일          | 항상                                               | `requirements.txt` / `package.json` / `Gemfile` 등 언어에 맞는 것               |
 
 **디렉토리 구조** — 다음을 권장하되, 기존 구조가 합리적이면 유지하고 필요한 부분만 보완:
 
@@ -205,9 +194,22 @@ echo "${REMOTE_VERSION}" > .grepp-agent/VERSION
 1. "서비스명이 무엇인가요?"
 2. "서비스의 주요 목적과 핵심 기능(2~5개)을 알려주세요."
 3. "사용 대상은 누구인가요?"
-4. "개발 담당자 이름과 연락처를 알려주세요. (선택)"
-5. "운영 담당자 이름과 연락처를 알려주세요. (선택)"
-6. "외부 서비스와 연동하나요? (있다면 어떤 서비스인가요?)"
+4. "이 서비스에서 **개인정보(이름, 연락처, 이메일 등)나 회사의 민감한 데이터(매출, 내부 문서, 고객 정보 등)**를 다루나요?"
+   - **"네"** 라고 답하면, 다음을 안내한다:
+
+     ```
+     ⚠️ 개인정보 및 민감 데이터를 다루는 서비스는 보안 검토가 필요합니다.
+
+     계속 진행하기 전에 아래 채널에 문의해주세요:
+     👉 https://grepp.slack.com/archives/C02C3QKHEU8
+
+     보안팀의 가이드를 받은 후 작업을 계속 진행하겠습니다.
+     ```
+
+   - **"아니요"** 라고 답하면 다음 질문으로 넘어간다
+5. "개발 담당자 이름과 연락처를 알려주세요. (선택)"
+6. "운영 담당자 이름과 연락처를 알려주세요. (선택)"
+7. "외부 서비스와 연동하나요? (있다면 어떤 서비스인가요?)"
 
 ### Step 6: 문서 TODO 채우기
 
@@ -215,8 +217,8 @@ Step 2에서 생성한 ARCHITECTURE.md, RUNBOOK.md, SECURITY.md에 남아있는 
 
 채울 수 없는 항목은 사용자에게 **추가로 질문**하여 입력받는다. 예:
 
-- ARCHITECTURE.md의 외부 연동 서비스 → Step 5의 8번 답변으로 채움
-- RUNBOOK.md의 담당자 → Step 5의 6, 7번 답변으로 채움
+- ARCHITECTURE.md의 외부 연동 서비스 → Step 5의 7번 답변으로 채움
+- RUNBOOK.md의 담당자 → Step 5의 5, 6번 답변으로 채움
 - SECURITY.md의 수집 데이터 → 사용자에게 "이 서비스에서 수집하는 데이터가 있나요?" 라고 추가 질문
 
 모든 `TODO:` 항목이 채워질 때까지 사용자와 대화하며 완성한다.
