@@ -48,27 +48,32 @@ BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/mai
 
 **반드시 읽어야 하는 파일 (순서대로):**
 
-1. **AGENTS.md** — AI 작업 기준 문서 (핵심)
+1. **VERSION** — 템플릿 버전 (가장 먼저 읽고 기록)
+   ```bash
+   REMOTE_VERSION=$(curl -s ${BASE_URL}/VERSION)
+   ```
+
+2. **AGENTS.md** — AI 작업 기준 문서 (핵심)
    ```bash
    curl -s ${BASE_URL}/AGENTS.md
    ```
 
-2. **ARCHITECTURE.md** — 시스템 구조 템플릿
+3. **ARCHITECTURE.md** — 시스템 구조 템플릿
    ```bash
    curl -s ${BASE_URL}/ARCHITECTURE.md
    ```
 
-3. **RUNBOOK.md** — 운영 절차서 템플릿
+4. **RUNBOOK.md** — 운영 절차서 템플릿
    ```bash
    curl -s ${BASE_URL}/RUNBOOK.md
    ```
 
-4. **SECURITY.md** — 보안 정책 템플릿
+5. **SECURITY.md** — 보안 정책 템플릿
    ```bash
    curl -s ${BASE_URL}/SECURITY.md
    ```
 
-5. **template-README.md** — README 템플릿
+6. **template-README.md** — README 템플릿
    ```bash
    curl -s ${BASE_URL}/template-README.md
    ```
@@ -82,6 +87,7 @@ BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/mai
 ├── AGENTS.md                    ← 루트
 ├── README.md                    ← 루트 (Step 5에서 생성)
 └── .grepp-agent/
+    ├── VERSION                  ← 템플릿 버전 (원격 VERSION 값으로 생성)
     ├── ARCHITECTURE.md
     ├── RUNBOOK.md
     └── SECURITY.md
@@ -94,7 +100,15 @@ fetch 한 `AGENTS.md` 내용을 **그대로** 프로젝트 루트에 생성한�
 
 #### .grepp-agent/ 디렉토리
 
-`.grepp-agent/` 디렉토리를 생성하고, 아래 파일들을 프로젝트에 맞게 수정하여 넣는다:
+`.grepp-agent/` 디렉토리를 생성하고, 아래 파일들을 넣는다:
+
+**VERSION** — Step 1에서 fetch한 원격 VERSION 값을 그대로 파일로 생성한다:
+```bash
+echo "${REMOTE_VERSION}" > .grepp-agent/VERSION
+```
+이 파일은 향후 AI Agent가 세션 시작 시 템플릿 업데이트를 확인하는 기준이 된다.
+
+아래 파일들은 프로젝트에 맞게 수정하여 넣는다:
 
 **ARCHITECTURE.md** — fetch 한 템플릿을 기반으로 다음을 반영하여 작성:
 - 프로젝트의 실제 구조에 맞는 시스템 구조도

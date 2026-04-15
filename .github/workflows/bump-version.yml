@@ -1,0 +1,28 @@
+name: Bump Template Version
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/VERSION'
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update VERSION timestamp
+        run: |
+          echo "$(date -u +%Y%m%d%H%M%S)" > docs/VERSION
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/VERSION
+          git diff --cached --quiet || git commit -m "chore: bump template version [skip ci]"
+          git push

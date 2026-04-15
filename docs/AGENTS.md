@@ -222,3 +222,41 @@ AI는 필요 시 다음 문서를 추가로 읽고 반영해야 한다:
 - 보안 기준을 위반하지 않음
 
 ---
+
+## 12. 템플릿 버전 관리
+
+### 세션 시작 시 버전 확인
+
+사용자의 **첫 번째 요청**을 받으면, 본격적인 작업에 앞서 **반드시** 다음 절차를 수행한다:
+
+1. **로컬 버전 확인**:
+   ```bash
+   cat .grepp-agent/VERSION
+   ```
+   - 파일이 없으면 템플릿이 설치되지 않은 것이다 → 설치 가이드(`installation.md`)를 안내한다
+
+2. **원격 버전 확인**:
+   ```bash
+   curl -s https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/VERSION
+   ```
+
+3. **버전 비교**:
+   - 원격 버전 > 로컬 버전 → 업데이트 절차 진행
+   - 동일 → 아무 작업 없이 사용자 요청을 처리한다
+
+### 업데이트 절차
+
+새 버전이 감지되면:
+
+1. **업데이트 가이드 fetch**:
+   ```bash
+   curl -s https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/update.md
+   ```
+
+2. update.md의 지시에 따라 변경 파일을 비교하고 업데이트를 적용한다
+
+3. 사용자에게 변경 내역을 보고하고 동의를 구한 후 실행한다
+
+4. 업데이트 완료 후 `.grepp-agent/VERSION`을 새 버전으로 갱신한다
+
+---

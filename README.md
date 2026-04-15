@@ -60,6 +60,8 @@ https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/main/docs/in
 ```
 /
 ├── docs/                  ← 템플릿 문서
+│   ├── VERSION           ← 템플릿 버전 (GitHub Action이 자동 갱신)
+│   ├── update.md         ← 업데이트 절차 가이드
 │   ├── installation.md   ← AI가 curl로 fetch하는 설치 가이드
 │   ├── AGENTS.md         ← AI 작업 기준 문서 (대상 프로젝트에 복사됨)
 │   ├── ARCHITECTURE.md   ← 시스템 구조 템플릿
@@ -111,6 +113,7 @@ AI: README.md 생성 → 완료 보고
 ├── AGENTS.md                    ← 루트 (AI 도구 자동 인식)
 ├── README.md                    ← 루트 (사용자 인터뷰 기반 생성)
 └── .grepp-agent/
+    ├── VERSION                  ← 설치된 템플릿 버전 (업데이트 확인용)
     ├── ARCHITECTURE.md          ← 시스템 구조 문서
     ├── RUNBOOK.md               ← 운영 절차서
     └── SECURITY.md              ← 보안 정책 문서
