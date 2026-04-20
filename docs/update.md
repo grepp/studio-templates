@@ -19,6 +19,7 @@ BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/mai
 | 파일 | 로컬 경로 | 업데이트 전략 |
 |------|-----------|--------------|
 | AGENTS.md | `./AGENTS.md` | **덮어쓰기** — 운영 표준 문서이므로 항상 최신 버전으로 교체 |
+| DESIGN.md | `./.grepp-agent/DESIGN.md` | **덮어쓰기** — 브랜드·UI 가이드라인이므로 원격 최신으로 교체 |
 | ARCHITECTURE.md | `./.grepp-agent/ARCHITECTURE.md` | **병합** — 프로젝트 고유 내용 보존, 구조/섹션 변경만 반영 |
 | RUNBOOK.md | `./.grepp-agent/RUNBOOK.md` | **병합** — 프로젝트 고유 내용 보존, 절차/섹션 변경만 반영 |
 | SECURITY.md | `./.grepp-agent/SECURITY.md` | **병합** — 프로젝트 고유 내용 보존, 정책/섹션 변경만 반영 |
@@ -56,6 +57,7 @@ AGENTS.md는 AI 작업 기준 문서이므로 원격 버전으로 그대로 덮�
 
 변경사항:
 - AGENTS.md: {변경 내용 요약}
+- DESIGN.md: {변경 내용 요약}
 - ARCHITECTURE.md: {변경 내용 요약}
 - RUNBOOK.md: {변경 내용 요약}
 - SECURITY.md: {변경 내용 요약}
@@ -68,9 +70,10 @@ AGENTS.md는 AI 작업 기준 문서이므로 원격 버전으로 그대로 덮�
 사용자가 동의하면:
 
 1. AGENTS.md를 원격 버전으로 덮어쓴다
-2. .grepp-agent/ 파일들을 병합 규칙에 따라 업데이트한다
-3. `.grepp-agent/VERSION` 파일을 원격 버전으로 갱신한다
-4. 변경된 파일 목록을 사용자에게 보고한다
+2. `.grepp-agent/DESIGN.md`를 원격 버전으로 덮어쓴다 (병합 없음)
+3. 그 외 `.grepp-agent/` 파일(ARCHITECTURE, RUNBOOK, SECURITY)을 병합 규칙에 따라 업데이트한다
+4. `.grepp-agent/VERSION` 파일을 원격 버전으로 갱신한다
+5. 변경된 파일 목록을 사용자에게 보고한다
 
 사용자가 거부하면:
 
