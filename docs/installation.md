@@ -65,6 +65,11 @@ BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/mai
    curl -s ${BASE_URL}/template-README.md
    ```
 
+7. **DESIGN.md** — 프로그래머스 Design Guideline (UI·접근성·토큰 기준)
+   ```bash
+   curl -s ${BASE_URL}/DESIGN.md
+   ```
+
 ### Step 2: 파일 생성
 
 대상 프로젝트에 다음 구조로 파일을 생성한다:
@@ -77,7 +82,8 @@ BASE_URL=https://raw.githubusercontent.com/grepp/studio-templates/refs/heads/mai
     ├── VERSION                  ← 템플릿 버전 (원격 VERSION 값으로 생성)
     ├── ARCHITECTURE.md
     ├── RUNBOOK.md
-    └── SECURITY.md
+    ├── SECURITY.md
+    └── DESIGN.md                ← 프로그래머스 디자인 가이드라인 (fetch 그대로)
 ```
 
 #### AGENTS.md (루트)
@@ -118,6 +124,11 @@ echo "${REMOTE_VERSION}" > .grepp-agent/VERSION
 - 실제 수집 데이터 목록
 - 실제 외부 전송 데이터
 - 모르는 항목은 `TODO:` 마커로 표시
+
+**DESIGN.md** — Step 1에서 fetch 한 내용을 **그대로** `.grepp-agent/DESIGN.md`로 생성한다. 수정하지 않는다.
+
+- 사용자 대면 UI가 있는 프로젝트는 이후 화면·컴포넌트·스타일 작업 시 `AGENTS.md` §6.8 및 본 문서를 구현 기준으로 따른다.
+- UI가 없는 프로젝트도 템플릿 일관성을 위해 동일하게 두며, 화면 작업이 생기면 적용한다.
 
 ### Step 3: 인프라 파일 생성
 
@@ -275,6 +286,7 @@ Step 5의 인터뷰 결과만으로는 구현에 충분하지 않으므로, Step
 - .grepp-agent/ARCHITECTURE.md  (시스템 구조 문서)
 - .grepp-agent/RUNBOOK.md (운영 절차서)
 - .grepp-agent/SECURITY.md (보안 정책 문서)
+- .grepp-agent/DESIGN.md  (프로그래머스 디자인 가이드라인)
 - .grepp-agent/SPEC.md    (서비스 명세서)
 - README.md               (프로젝트 소개 문서)
 
